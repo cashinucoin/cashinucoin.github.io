@@ -1,0 +1,2212 @@
+/* =========================================================
+   CASH INU
+   SUPERHERO / COMIC BOOK WEBSITE
+========================================================= */
+
+:root {
+
+    --yellow: #ffd21a;
+    --yellow-dark: #e5a900;
+
+    --black: #050505;
+    --white: #ffffff;
+
+    --panel: rgba(5, 5, 5, 0.78);
+
+    --border:
+        3px solid var(--yellow);
+
+    --display:
+        "Bangers",
+        Impact,
+        sans-serif;
+
+    --body:
+        "Barlow Condensed",
+        Arial,
+        sans-serif;
+
+    --shadow:
+        5px 5px 0 #000;
+
+    --ease:
+        cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    background:
+        #050505;
+
+    color:
+        var(--white);
+
+    font-family:
+        var(--body);
+
+    overflow-x:
+        hidden;
+}
+
+a {
+    color:
+        inherit;
+
+    text-decoration:
+        none;
+}
+
+
+/* =========================================================
+   HALFTONE OVERLAY
+========================================================= */
+
+.halftone {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    pointer-events:
+        none;
+
+    z-index:
+        100;
+
+    opacity:
+        .055;
+
+    background-image:
+        radial-gradient(
+            #fff 1px,
+            transparent 1px
+        );
+
+    background-size:
+        7px 7px;
+
+    mix-blend-mode:
+        screen;
+}
+
+
+/* =========================================================
+   SCROLL PROGRESS
+========================================================= */
+
+.scroll-progress {
+
+    position:
+        fixed;
+
+    left:
+        0;
+
+    top:
+        0;
+
+    width:
+        100%;
+
+    height:
+        5px;
+
+    background:
+        transparent;
+
+    z-index:
+        200;
+}
+
+.scroll-progress span {
+
+    display:
+        block;
+
+    width:
+        0%;
+
+    height:
+        100%;
+
+    background:
+        var(--yellow);
+
+    box-shadow:
+        0 0 12px rgba(255,210,26,.8);
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.site-nav {
+
+    position:
+        fixed;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    padding:
+        22px 35px;
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    z-index:
+        150;
+
+    pointer-events:
+        none;
+}
+
+.brand {
+
+    pointer-events:
+        auto;
+
+    font-family:
+        var(--display);
+
+    font-size:
+        30px;
+
+    letter-spacing:
+        1px;
+
+    color:
+        var(--yellow);
+
+    text-shadow:
+        3px 3px 0 #000;
+}
+
+.brand span {
+    color:
+        #fff;
+}
+
+.site-nav nav {
+
+    display:
+        flex;
+
+    gap:
+        7px;
+
+    pointer-events:
+        auto;
+}
+
+.site-nav nav a {
+
+    min-width:
+        40px;
+
+    height:
+        34px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    border:
+        2px solid rgba(255,210,26,.8);
+
+    background:
+        rgba(0,0,0,.65);
+
+    font-weight:
+        800;
+
+    font-size:
+        13px;
+
+    transition:
+        .2s ease;
+}
+
+.site-nav nav a:hover,
+.site-nav nav a.active {
+
+    color:
+        #000;
+
+    background:
+        var(--yellow);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   SCENES
+========================================================= */
+
+.scene {
+
+    position:
+        relative;
+
+    min-height:
+        100svh;
+
+    width:
+        100%;
+
+    overflow:
+        hidden;
+
+    isolation:
+        isolate;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+}
+
+
+/* =========================================================
+   BACKGROUNDS
+========================================================= */
+
+.scene-bg {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    z-index:
+        -3;
+
+    background-position:
+        center center;
+
+    background-size:
+        cover;
+
+    background-repeat:
+        no-repeat;
+
+    transform:
+        scale(1.015);
+
+    transition:
+        transform 1.2s var(--ease);
+}
+
+
+/* Exact uploaded artwork */
+
+.scene-01 .scene-bg {
+    background-image:
+        url("./$CASHINU_WEB_BG01.png");
+}
+
+.scene-02 .scene-bg {
+    background-image:
+        url("./$CASHINU_WEB_BG02.png");
+}
+
+.scene-03 .scene-bg {
+    background-image:
+        url("./$CASHINU_WEB_BG03.png");
+}
+
+.scene-04 .scene-bg {
+    background-image:
+        url("./$CASHINU_WEB_BG04.png");
+}
+
+
+/* =========================================================
+   COMIC FRAME
+========================================================= */
+
+.comic-frame {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    z-index:
+        -1;
+
+    pointer-events:
+        none;
+
+    border:
+        8px solid #050505;
+
+    box-shadow:
+        inset 0 0 0 3px var(--yellow);
+
+    opacity:
+        .95;
+}
+
+
+/* =========================================================
+   SCENE CONTENT
+========================================================= */
+
+.scene-content {
+
+    position:
+        relative;
+
+    width:
+        min(520px, 43vw);
+
+    z-index:
+        10;
+
+    opacity:
+        0;
+
+    transform:
+        translateY(35px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s var(--ease);
+}
+
+.scene.visible .scene-content {
+
+    opacity:
+        1;
+
+    transform:
+        translateY(0);
+}
+
+.scene-content.left {
+
+    margin-left:
+        clamp(45px, 7vw, 125px);
+}
+
+.scene-content.right {
+
+    margin-left:
+        auto;
+
+    margin-right:
+        clamp(45px, 7vw, 125px);
+}
+
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.eyebrow {
+
+    display:
+        inline-block;
+
+    margin-bottom:
+        16px;
+
+    padding:
+        6px 12px;
+
+    background:
+        var(--yellow);
+
+    color:
+        #fffafa;
+
+    font-family:
+        var(--display);
+
+    font-size:
+        74px;
+
+    letter-spacing:
+        1px;
+
+    box-shadow:
+        var(--shadow);
+
+    transform:
+        skew(-4deg);
+
+}
+
+.eyebrows {
+
+    display:
+        inline-block;
+
+    margin-bottom:
+        16px;
+
+    padding:
+        6px 12px;
+
+    background:
+        var(--yellow);
+
+    color:
+        #2b2b2b;
+
+    font-family:
+        var(--display);
+
+    font-size:
+        34px;
+
+    letter-spacing:
+        1px;
+
+    box-shadow:
+        var(--shadow);
+
+    transform:
+        skew(-4deg);
+}
+
+.eyebrowz {
+
+    display:
+        inline-block;
+
+    margin-bottom:
+        16px;
+
+    padding:
+        6px 12px;
+
+    background:
+        var(--yellow);
+
+    color:
+        #4343ff;
+
+    font-family:
+        var(--display);
+
+    font-size:
+        74px;
+
+    letter-spacing:
+        1px;
+
+    box-shadow:
+        var(--shadow);
+
+    text-shadow:
+        5px 5px 0 #000,
+        8px 8px 0 rgba(0,0,0,.25);
+
+    transform:
+        skew(-4deg);
+}
+
+h1,
+h2 {
+
+    font-family:
+        var(--display);
+
+    text-transform:
+        uppercase;
+
+    font-weight:
+        400;
+
+    letter-spacing:
+        1px;
+
+    line-height:
+        .86;
+
+    text-shadow:
+        5px 5px 0 #000,
+        8px 8px 0 rgba(0,0,0,.25);
+}
+
+h1 {
+
+    font-size:
+        clamp(68px, 7vw, 118px);
+
+    color:
+        #fff;
+
+    margin-bottom:
+        22px;
+}
+
+h1 span {
+    color:
+        var(--yellow);
+}
+
+h2 {
+
+    font-size:
+        clamp(62px, 6.2vw, 105px);
+
+    color:
+        #fff;
+
+    margin-bottom:
+        28px;
+}
+
+.lead {
+
+    font-family:
+        var(--body);
+
+    font-size:
+        clamp(22px, 2vw, 31px);
+
+    line-height:
+        1.05;
+
+    font-weight:
+        900;
+
+    color:
+        var(--yellow);
+
+    text-shadow:
+        3px 3px 0 #000;
+}
+
+
+/* =========================================================
+   SCENE 02 POWER LIST
+========================================================= */
+
+.power-list {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr;
+
+    gap:
+        9px;
+
+    width:
+        min(400px, 100%);
+}
+
+.power-item {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        14px;
+
+    padding:
+        11px 15px;
+
+    background:
+        rgba(0,0,0,.72);
+
+    border-left:
+        5px solid var(--yellow);
+
+    box-shadow:
+        4px 4px 0 #000;
+
+    font-size:
+        20px;
+
+    font-weight:
+        800;
+
+    text-transform:
+        uppercase;
+
+    transition:
+        .2s ease;
+}
+
+.power-item:hover {
+
+    transform:
+        translateX(7px);
+
+    background:
+        rgba(255,210,26,.92);
+
+    color:
+        #000;
+}
+
+.power-item span {
+
+    font-size:
+        24px;
+
+    width:
+        30px;
+}
+
+
+/* =========================================================
+   SCENE 03
+========================================================= */
+
+.scene-03-text {
+
+    width:
+        min(490px, 40vw);
+}
+
+.scene-03-text h2 {
+
+    font-size:
+        clamp(38px, 4vw, 65px);
+
+    line-height:
+        .92;
+}
+
+.story {
+
+    font-size:
+        23px;
+
+    line-height:
+        1.15;
+
+    font-weight:
+        600;
+
+    text-shadow:
+        3px 3px 0 #000;
+
+    margin-bottom:
+        18px;
+}
+
+.story strong {
+    color:
+        var(--yellow);
+}
+
+.speech {
+
+    display:
+        inline-block;
+
+    padding:
+        13px 17px;
+
+    background:
+        #fff;
+
+    color:
+        #000;
+
+    border:
+        4px solid #000;
+
+    box-shadow:
+        5px 5px 0 var(--yellow);
+
+    font-family:
+        var(--display);
+
+    font-size:
+        26px;
+
+    line-height:
+        1;
+
+    transform:
+        rotate(-1.5deg);
+}
+
+.speech span {
+
+    display:
+        block;
+
+    color:
+        #111;
+
+    margin-top:
+        5px;
+}
+
+
+/* =========================================================
+   SCENE 04
+========================================================= */
+
+.scene-04-text {
+
+    width:
+        min(420px, 35vw);
+}
+
+.scene-04-text h2 {
+
+    font-size:
+        clamp(65px, 6vw, 105px);
+}
+
+.big-line {
+
+    display:
+        inline-block;
+
+    padding:
+        8px 14px;
+
+    background:
+        var(--yellow);
+
+    color:
+        #000;
+
+    font-family:
+        var(--display);
+
+    font-size:
+        clamp(34px, 3.5vw, 55px);
+
+    box-shadow:
+        var(--shadow);
+
+    transform:
+        rotate(-2deg);
+
+    margin-bottom:
+        25px;
+}
+
+
+/* =========================================================
+   SCENE NUMBERS
+========================================================= */
+
+.scene-number {
+
+    position:
+        absolute;
+
+    bottom:
+        30px;
+
+    right:
+        38px;
+
+    font-family:
+        var(--display);
+
+    font-size:
+        35px;
+
+    color:
+        var(--yellow);
+
+    text-shadow:
+        3px 3px 0 #000;
+}
+
+
+/* =========================================================
+   CAPTION
+========================================================= */
+
+.caption {
+
+    position:
+        absolute;
+
+    left:
+        38px;
+
+    bottom:
+        30px;
+
+    padding:
+        5px 10px;
+
+    background:
+        #000;
+
+    border:
+        2px solid var(--yellow);
+
+    font-weight:
+        800;
+
+    font-size:
+        13px;
+
+    letter-spacing:
+        1px;
+}
+
+
+/* =========================================================
+   TOKENOMICS
+========================================================= */
+
+.token-section {
+
+    position:
+        relative;
+
+    min-height:
+        100svh;
+
+    overflow:
+        hidden;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        #070707;
+
+    padding:
+        90px 25px;
+}
+
+.token-bg {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    opacity:
+        .18;
+
+    background:
+        linear-gradient(
+            135deg,
+            #000 0%,
+            #191300 45%,
+            #000 100%
+        );
+
+    z-index:
+        0;
+}
+
+.token-section::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background-image:
+        radial-gradient(
+            rgba(255,210,26,.4) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        12px 12px;
+
+    opacity:
+        .12;
+}
+
+.token-inner {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    width:
+        min(1100px, 100%);
+
+    text-align:
+        center;
+}
+
+.token-header .eyebrow {
+
+    margin-bottom:
+        20px;
+}
+
+.token-header h2 {
+
+    font-size:
+        clamp(60px, 7vw, 105px);
+
+    margin-bottom:
+        10px;
+}
+
+.token-header p {
+
+    font-size:
+        20px;
+
+    font-weight:
+        700;
+
+    margin-bottom:
+        35px;
+
+    color:
+        #ddd;
+}
+
+
+/* =========================================================
+   TOKENOMICS GRID
+========================================================= */
+
+.tokenomics-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        12px;
+
+    margin-bottom:
+        22px;
+}
+
+.token-card {
+
+    padding:
+        18px 12px;
+
+    background:
+        rgba(0,0,0,.78);
+
+    border:
+        3px solid var(--yellow);
+
+    box-shadow:
+        5px 5px 0 #000;
+}
+
+.token-card span {
+
+    display:
+        block;
+
+    font-size:
+        14px;
+
+    font-weight:
+        800;
+
+    color:
+        #aaa;
+
+    margin-bottom:
+        8px;
+}
+
+.token-card strong {
+
+    display:
+        block;
+
+    font-family:
+        var(--display);
+
+    font-size:
+        32px;
+
+    color:
+        var(--yellow);
+
+    letter-spacing:
+        1px;
+}
+
+
+/* =========================================================
+   CONTRACT
+========================================================= */
+
+.contract-box {
+
+    width:
+        min(800px, 100%);
+
+    margin:
+        0 auto 24px;
+
+    padding:
+        13px;
+
+    background:
+        rgba(0,0,0,.85);
+
+    border:
+        2px solid #555;
+}
+
+.contract-box > span {
+
+    display:
+        block;
+
+    text-align:
+        left;
+
+    color:
+        #aaa;
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    margin-bottom:
+        7px;
+}
+
+.contract-row {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+}
+
+.contract-row code {
+
+    flex:
+        1;
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+
+    text-align:
+        left;
+
+    color:
+        #fff;
+
+    font-family:
+        monospace;
+
+    font-size:
+        13px;
+}
+
+.contract-row button {
+
+    border:
+        2px solid var(--yellow);
+
+    background:
+        var(--yellow);
+
+    color:
+        #000;
+
+    padding:
+        7px 14px;
+
+    font-family:
+        var(--body);
+
+    font-weight:
+        900;
+
+    cursor:
+        pointer;
+
+    transition:
+        .2s ease;
+}
+
+
+/* =========================================================
+   BUY BUTTONS
+========================================================= */
+
+.contract-row button:hover {
+
+    background:
+        #fff;
+
+    border-color:
+        #fff;
+}
+
+.buy-title {
+
+    font-family:
+        var(--display);
+
+    color:
+        var(--yellow);
+
+    font-size:
+        28px;
+
+    margin-bottom:
+        12px;
+}
+
+.buy-buttons {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        12px;
+
+    flex-wrap:
+        wrap;
+}
+
+.buy-button {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-width:
+        230px;
+
+    padding:
+        13px 20px;
+
+    background:
+        var(--yellow);
+
+    color:
+        #000;
+
+    border:
+        3px solid #000;
+
+    box-shadow:
+        5px 5px 0 #000;
+
+    font-family:
+        var(--display);
+
+    font-size:
+        25px;
+
+    letter-spacing:
+        .5px;
+
+    transition:
+        .2s ease;
+}
+
+.buy-button:hover {
+
+    background:
+        #fff;
+
+    transform:
+        translate(-2px,-2px);
+
+    box-shadow:
+        7px 7px 0 #000;
+}
+
+.buy-button:active {
+
+    transform:
+        translate(3px,3px);
+
+    box-shadow:
+        2px 2px 0 #000;
+}
+
+
+/* =========================================================
+   FINAL MESSAGE
+========================================================= */
+
+.final-message {
+
+    margin-top:
+        45px;
+
+    font-family:
+        var(--display);
+
+    font-size:
+        clamp(30px, 4vw, 55px);
+
+    line-height:
+        .95;
+
+    color:
+        #fff;
+
+    text-shadow:
+        4px 4px 0 #000;
+}
+
+.final-message span {
+    color:
+        var(--yellow);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    padding:
+        15px 30px;
+
+    background:
+        #000;
+
+    border-top:
+        3px solid var(--yellow);
+
+    font-weight:
+        800;
+
+    font-size:
+        13px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .scene-content.left {
+        margin-left:
+            45px;
+    }
+
+    .scene-content.right {
+        margin-right:
+            45px;
+    }
+
+    .scene-content {
+        width:
+            min(460px, 48vw);
+    }
+
+    .scene-03-text {
+        width:
+            min(430px, 45vw);
+    }
+
+    .scene-04-text {
+        width:
+            min(400px, 42vw);
+    }
+
+    .tokenomics-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .site-nav {
+
+        padding:
+            14px 16px;
+    }
+
+    .brand {
+        font-size:
+            25px;
+    }
+
+    .site-nav nav {
+
+        gap:
+            4px;
+    }
+
+    .site-nav nav a {
+
+        min-width:
+            29px;
+
+        height:
+            27px;
+
+        font-size:
+            10px;
+    }
+
+    .scene {
+
+        min-height:
+            100svh;
+
+        align-items:
+            flex-end;
+    }
+
+    .scene-bg {
+
+        background-position:
+            center center;
+    }
+
+    .scene-content,
+    .scene-content.left,
+    .scene-content.right {
+
+        width:
+            calc(100% - 30px);
+
+        margin:
+            0 15px 45px;
+
+        padding:
+            15px;
+
+        background:
+            linear-gradient(
+                to top,
+                rgba(0,0,0,.86),
+                rgba(0,0,0,.55)
+            );
+
+        border-left:
+            4px solid var(--yellow);
+    }
+
+    .eyebrow {
+
+        font-size:
+            19px;
+
+        margin-bottom:
+            10px;
+    }
+
+    h1 {
+
+        font-size:
+            clamp(53px, 16vw, 75px);
+
+        line-height:
+            .84;
+
+        margin-bottom:
+            14px;
+    }
+
+    h2 {
+
+        font-size:
+            clamp(48px, 14vw, 70px);
+
+        margin-bottom:
+            18px;
+    }
+
+    .lead {
+
+        font-size:
+            20px;
+    }
+
+    .power-item {
+
+        font-size:
+            17px;
+
+        padding:
+            9px 11px;
+    }
+
+    .scene-03-text h2 {
+
+        font-size:
+            clamp(35px, 10vw, 54px);
+    }
+
+    .story {
+
+        font-size:
+            18px;
+    }
+
+    .speech {
+
+        font-size:
+            21px;
+    }
+
+    .scene-04-text h2 {
+
+        font-size:
+            clamp(52px, 15vw, 72px);
+    }
+
+    .big-line {
+
+        font-size:
+            32px;
+    }
+
+    .caption {
+
+        display:
+            none;
+    }
+
+    .scene-number {
+
+        right:
+            15px;
+
+        bottom:
+            12px;
+
+        font-size:
+            25px;
+    }
+
+    .token-section {
+
+        padding:
+            80px 15px 55px;
+    }
+
+    .tokenomics-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap:
+            8px;
+    }
+
+    .token-card {
+
+        padding:
+            14px 8px;
+    }
+
+    .token-card span {
+
+        font-size:
+            11px;
+    }
+
+    .token-card strong {
+
+        font-size:
+            25px;
+    }
+
+    .contract-row {
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+    }
+
+    .contract-row code {
+
+        padding:
+            7px;
+
+        background:
+            #111;
+
+        text-align:
+            center;
+    }
+
+    .contract-row button {
+
+        width:
+            100%;
+    }
+
+    .buy-button {
+
+        width:
+            100%;
+
+        min-width:
+            0;
+
+        font-size:
+            22px;
+    }
+
+    footer {
+
+        padding:
+            12px 15px;
+
+        font-size:
+            10px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE COMPOSITION — CASH INU
+   01 / 02 / 04 = smaller + right side
+   03 = slightly smaller, position stays left
+========================================================= */
+
+@media (max-width: 700px) {
+
+    /* -----------------------------------------------------
+       SCENE 01 — WALL STREET
+    ----------------------------------------------------- */
+
+    .scene-01 .scene-content {
+
+        width:
+            58%;
+
+        max-width:
+            300px;
+
+        margin-left:
+            auto;
+
+        margin-right:
+            14px;
+
+        margin-bottom:
+            42px;
+
+        padding:
+            11px 12px;
+    }
+
+    .scene-01 .eyebrowz {
+
+        font-size:
+            clamp(38px, 10vw, 50px);
+
+        line-height:
+            .86;
+
+        margin-bottom:
+            10px;
+
+        padding:
+            5px 9px;
+    }
+
+    .scene-01 .scene-content h2 {
+
+        font-size:
+            clamp(34px, 9.2vw, 48px);
+
+        line-height:
+            .88;
+
+        margin-bottom:
+            11px;
+    }
+
+    .scene-01 .lead {
+
+        font-size:
+            clamp(13px, 3.5vw, 17px);
+
+        line-height:
+            1.02;
+    }
+
+
+    /* -----------------------------------------------------
+       SCENE 02 — CASH MINDSET
+    ----------------------------------------------------- */
+
+    .scene-02 .scene-content {
+
+        width:
+            58%;
+
+        max-width:
+            300px;
+
+        margin-left:
+            auto;
+
+        margin-right:
+            14px;
+
+        margin-bottom:
+            42px;
+
+        padding:
+            11px 12px;
+    }
+
+    .scene-02 .eyebrows {
+
+        font-size:
+            clamp(15px, 4.2vw, 20px);
+
+        margin-bottom:
+            9px;
+
+        padding:
+            5px 9px;
+    }
+
+    .scene-02 .scene-content h2 {
+
+        font-size:
+            clamp(36px, 9.5vw, 50px);
+
+        line-height:
+            .88;
+
+        margin-bottom:
+            11px;
+    }
+
+    .scene-02 .power-list {
+
+        width:
+            100%;
+
+        gap:
+            6px;
+    }
+
+    .scene-02 .power-item {
+
+        gap:
+            7px;
+
+        padding:
+            6px 7px;
+
+        font-size:
+            clamp(11px, 3vw, 14px);
+
+        line-height:
+            1;
+    }
+
+    .scene-02 .power-item span {
+
+        width:
+            21px;
+
+        min-width:
+            21px;
+
+        font-size:
+            14px;
+    }
+
+
+    /* -----------------------------------------------------
+       SCENE 03 — THE NEXT INU
+       Keep left position; only scale down slightly.
+    ----------------------------------------------------- */
+
+    .scene-03 .scene-content {
+
+        width:
+            calc(100% - 30px);
+
+        margin-left:
+            15px;
+
+        margin-right:
+            15px;
+
+        padding:
+            13px;
+    }
+
+    .scene-03-text .eyebrows {
+
+        font-size:
+            clamp(15px, 4.2vw, 20px);
+
+        padding:
+            5px 9px;
+
+        margin-bottom:
+            9px;
+    }
+
+    .scene-03-text h2 {
+
+        font-size:
+            clamp(32px, 8.8vw, 48px);
+
+        line-height:
+            .9;
+
+        margin-bottom:
+            12px;
+    }
+
+    .scene-03-text .story {
+
+        font-size:
+            clamp(14px, 3.8vw, 17px);
+
+        margin-bottom:
+            12px;
+    }
+
+    .scene-03-text .speech {
+
+        font-size:
+            clamp(17px, 4.5vw, 21px);
+
+        padding:
+            10px 13px;
+    }
+
+
+    /* -----------------------------------------------------
+       SCENE 04 — THE MEME WALKS ON
+    ----------------------------------------------------- */
+
+    .scene-04 .scene-content {
+
+        width:
+            58%;
+
+        max-width:
+            300px;
+
+        margin-left:
+            auto;
+
+        margin-right:
+            14px;
+
+        margin-bottom:
+            42px;
+
+        padding:
+            11px 12px;
+    }
+
+    .scene-04-text .eyebrows {
+
+        font-size:
+            clamp(15px, 4.2vw, 20px);
+
+        margin-bottom:
+            9px;
+
+        padding:
+            5px 9px;
+    }
+
+    .scene-04-text h2 {
+
+        font-size:
+            clamp(42px, 11vw, 57px);
+
+        line-height:
+            .84;
+
+        margin-bottom:
+            11px;
+    }
+
+    .scene-04-text .big-line {
+
+        font-size:
+            clamp(22px, 6vw, 30px);
+
+        padding:
+            6px 9px;
+
+        margin-bottom:
+            13px;
+    }
+
+    .scene-04-text .story {
+
+        font-size:
+            clamp(13px, 3.5vw, 16px);
+
+        line-height:
+            1.05;
+
+        margin-bottom:
+            0;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior:
+            auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+
+        animation:
+            none !important;
+
+        transition:
+            none !important;
+    }
+}
+
+
+.x-link {
+    color: #ffd400;
+    text-decoration: none;
+
+    font-size:
+        16px;
+}
+
+.x-link:hover {
+    color: #fff;
+}
+
+
+/* =========================================================
+   TOKEN SECTION — WHITE + YELLOW BALANCE
+========================================================= */
+
+.token-section {
+    color: #f5f5f5;
+}
+
+
+/* TOKEN HEADER */
+
+.token-header .eyebrows {
+    color: #111;
+    background: var(--yellow);
+}
+
+.token-header h2 {
+    color: #ffffff;
+}
+
+.token-header p {
+    color: rgba(255,255,255,.78);
+}
+
+
+/* =========================================================
+   $CASHINU — 3 COLOR BRAND TREATMENT
+========================================================= */
+
+.token-header .eyebrows {
+    font-size: clamp(22px, 3vw, 38px);
+    letter-spacing: 1px;
+    font-weight: 900;
+    color: #ffffff;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    transform: none;
+}
+
+.token-header .eyebrows::first-letter {
+    color: #ffffff;
+}
+
+
+/* $CASHINU dibuat menggunakan span
+   jika HTML menggunakan struktur:
+   <span class="token-dollar">$</span>
+   <span class="token-cash">CASH</span>
+   <span class="token-inu">INU</span>
+*/
+
+.token-dollar {
+    color: #ffffff;
+}
+
+.token-cash {
+    color: var(--yellow);
+}
+
+.token-inu {
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   TOKENOMICS CARDS
+========================================================= */
+
+.tokenomics-grid {
+    color: #ffffff;
+}
+
+.token-card {
+    color: #ffffff;
+    background: rgba(0,0,0,.72);
+    border: 2px solid rgba(255,210,26,.65);
+}
+
+.token-card span {
+    color: rgba(255,255,255,.72);
+}
+
+.token-card strong {
+    color: var(--yellow);
+}
+
+
+/* =========================================================
+   SMART CONTRACT
+========================================================= */
+
+.contract-box {
+    color: #ffffff;
+}
+
+.contract-box span {
+    color: rgba(255,255,255,.72);
+}
+
+.contract-address {
+    color: #ffffff;
+}
+
+.copy-btn {
+    color: #111;
+    background: var(--yellow);
+}
+
+.copy-btn:hover {
+    color: #111;
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   BUY / CTA AREA
+========================================================= */
+
+.buy-title {
+    color: #ffffff;
+}
+
+.buy-title strong {
+    color: var(--yellow);
+}
+
+.buy-buttons a {
+    color: #111;
+    background: var(--yellow);
+}
+
+.buy-buttons a:hover {
+    color: #111;
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   FINAL MEME STATEMENT
+========================================================= */
+
+.token-footer,
+.token-final {
+    color: #ffffff;
+}
+
+.token-final .ticker {
+    color: var(--yellow);
+}
+
+.token-final h2 {
+    color: #ffffff;
+}
+
+.token-final p {
+    color: rgba(255,255,255,.72);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    color: rgba(255,255,255,.72);
+}
+
+footer strong,
+footer .brand {
+    color: var(--yellow);
+}
+
+footer a {
+    color: #ffffff;
+}
+
+footer a:hover {
+    color: var(--yellow);
+}
+
+
+/* =========================================================
+   MOBILE — KEEP THE SAME COLOR HIERARCHY
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .token-header .eyebrows {
+        font-size: clamp(21px, 7vw, 30px);
+    }
+
+    .token-header h2 {
+        color: #ffffff;
+    }
+
+    .token-header p {
+        color: rgba(255,255,255,.76);
+    }
+
+    .token-card span {
+        color: rgba(255,255,255,.68);
+    }
+
+    .token-card strong {
+        color: var(--yellow);
+    }
+
+    .contract-address {
+        color: #ffffff;
+    }
+
+    .token-final h2 {
+        color: #ffffff;
+    }
+
+    .token-final .ticker {
+        color: var(--yellow);
+    }
+
+}
